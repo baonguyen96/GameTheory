@@ -10,17 +10,31 @@ import java.util.stream.Collectors;
 public class Tournament {
     private final int totalRounds;
     private final List<Player> players;
+    private final boolean showMatches;
 
     public Tournament(int totalRounds, List<Player> players) {
+        this(totalRounds, players, true);
+    }
+
+    public Tournament(int totalRounds, List<Player> players, boolean showMatches) {
         this.totalRounds = totalRounds;
         this.players = players;
+        this.showMatches = showMatches;
     }
 
     public int start() {
-        System.out.printf("Starting tournament with %d round(s)\n", this.totalRounds);
+        List<String> uniqueStrategies =  players
+                .stream()
+                .map(player -> player.getStrategy().getClass().getSimpleName())
+                .distinct()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+
+        System.out.printf("Starting tournament with %d round(s) and %d player(s)\n", totalRounds, players.size());
         System.out.printf("Players population: %d nice, %d not nice\n",
-                this.players.stream().filter(player -> player.getStrategy().isNice()).count(),
-                this.players.stream().filter(player -> !player.getStrategy().isNice()).count());
+                players.stream().filter(player -> player.getStrategy().isNice()).count(),
+                players.stream().filter(player -> !player.getStrategy().isNice()).count());
+        System.out.printf("%d unique strategies: %s\n\n", uniqueStrategies.size(), uniqueStrategies);
 
         int matches = 0;
 
@@ -34,7 +48,7 @@ public class Tournament {
                 player.resetAllMoves();
                 opponent.resetAllMoves();
 
-                for (int round = 0; round < this.totalRounds; round++) {
+                for (int round = 0; round < totalRounds; round++) {
                     Strategy.Move playerMove = player.play(opponent);
                     Strategy.Move opponentMove = opponent.play(player);
 
@@ -44,15 +58,19 @@ public class Tournament {
                     player.increaseScore(playerScore);
                     opponent.increaseScore(opponentScore);
 
-                    System.out.printf("Round %d : %s (%s) vs Player %s (%s) : %d vs %d\n",
-                            round, player, playerMove, opponent, opponentMove, playerScore, opponentScore);
+                    if (showMatches) {
+                        System.out.printf("Round %d : %s (%s) vs Player %s (%s) : %d vs %d\n",
+                                round, player, playerMove, opponent, opponentMove, playerScore, opponentScore);
+                    }
                 }
             }
 
-            System.out.println();
+            if (showMatches) {
+                System.out.println();
+            }
         }
 
-        System.out.printf("%d-round(s) Tournament ended with %d matches\n", this.totalRounds, matches);
+        System.out.printf("%d-round(s) Tournament ended with %d matches\n", totalRounds, matches);
         return matches;
     }
 
@@ -74,7 +92,7 @@ public class Tournament {
     public Player getWinner() {
         System.out.println("\nScore board:");
 
-        List<Player> topScorers = this.players
+        List<Player> topScorers = players
                 .stream()
                 .sorted(Comparator
                         .comparingInt(Player::getScore)

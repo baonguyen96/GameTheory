@@ -13,7 +13,7 @@ public class DefectAtIntervalStrategy implements Strategy {
     }
 
     public DefectAtIntervalStrategy(int frequencyToDefect) {
-        this.frequencyToDefect = frequencyToDefect;
+        this.frequencyToDefect = Math.max(1, frequencyToDefect);
     }
 
     @Override

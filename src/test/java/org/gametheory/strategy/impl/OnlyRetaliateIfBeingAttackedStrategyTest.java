@@ -8,12 +8,12 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class OnlyRetaliateIfAttackedStrategyTest {
+public class OnlyRetaliateIfBeingAttackedStrategyTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new OnlyRetaliateIfAttackedStrategy();
+        strategy = new OnlyRetaliateIfBeingAttackedStrategy();
     }
 
     @Test

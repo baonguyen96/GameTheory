@@ -6,12 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class OnlyRetaliateIfAttackedButAttackOnFirstMoveStrategyTest {
+public class OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategyTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new OnlyRetaliateIfAttackedButAttackOnFirstMoveStrategy();
+        strategy = new OnlyRetaliateIfBeingBeingAttackedButAttackOnFirstMoveStrategy();
     }
 
     @Test

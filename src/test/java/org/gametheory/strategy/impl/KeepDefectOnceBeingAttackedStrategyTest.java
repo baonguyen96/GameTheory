@@ -8,12 +8,12 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-public class KeepDefectOnceAttackedStrategyTest {
+public class KeepDefectOnceBeingAttackedStrategyTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new KeepDefectOnceAttackedStrategy();
+        strategy = new KeepDefectOnceBeingAttackedStrategy();
     }
 
     @Test

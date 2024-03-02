@@ -20,22 +20,23 @@ public class Player {
 
     public Move play(Player opponent) {
         Move move = (opponent.getLastMoves().isEmpty() || getLastMoves().isEmpty())
-                ? this.strategy.makeFirstMove()
-                : this.strategy.makeMove(this.lastMoves, opponent.lastMoves);
+                ? strategy.makeFirstMove()
+                : strategy.makeMove(this.lastMoves, opponent.lastMoves);
+
         this.lastMoves.add(move);
         return move;
     }
 
     public void resetAllMoves() {
-        this.lastMoves = new LinkedList<>();
+        lastMoves = new LinkedList<>();
     }
 
     public List<Move> getLastMoves() {
-        return this.lastMoves;
+        return lastMoves;
     }
 
     public void increaseScore(int additionalScore) {
-        this.score += additionalScore;
+        score += additionalScore;
     }
 
     public int getScore() {
@@ -43,7 +44,7 @@ public class Player {
     }
 
     public Strategy getStrategy() {
-        return this.strategy;
+        return strategy;
     }
 
     public int getPlayerId() {
@@ -52,8 +53,14 @@ public class Player {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Player player = (Player) o;
         return playerId == player.playerId;
     }

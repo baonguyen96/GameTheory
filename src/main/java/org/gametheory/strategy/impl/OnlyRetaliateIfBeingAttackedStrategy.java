@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class OnlyRetaliateIfAttackedStrategy implements Strategy {
+public class OnlyRetaliateIfBeingAttackedStrategy implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.COOPERATE;

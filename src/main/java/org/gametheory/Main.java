@@ -9,15 +9,19 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Random random = new Random();
-        int populationSize = random.nextInt(250);
-        int rounds = random.nextInt(200);
+        int populationSize = getRandomNumber(500, 1000);
+        int rounds = getRandomNumber(100, 300);
+        boolean showMatches = false;
 
-        List<Player> players = PlayerPopulation.getBigPopulationPlayers(populationSize);
-        Tournament tournament = new Tournament(rounds, players);
+        List<Player> players = PlayerPopulation.getPopulationWithGoodAndBadPlayers(1, populationSize - 1);
+        Tournament tournament = new Tournament(rounds, players, showMatches);
         tournament.start();
 
         Player winner = tournament.getWinner();
-        System.out.println("\nWinner is " + winner);
+        System.out.printf("\nWinner is %s\n", winner);
+    }
+
+    private static int getRandomNumber(int min, int max) {
+        return new Random().nextInt(max + 1 - min) + min;
     }
 }

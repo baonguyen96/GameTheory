@@ -52,16 +52,14 @@ public class PlayerPopulationTest {
     }
 
     @Test
-    public void getIsolatedGoodPlayerWithinAbusingPopulation() {
-        List<Player> players = PlayerPopulation.getIsolatedGoodPlayerWithinAbusingPopulation(100);
-        assertEquals(players.size() - 1, players.stream().filter(player -> !player.getStrategy().isNice()).count());
-        assertEquals(1L, players.stream().filter(player -> player.getStrategy().isNice()).count());
+    public void getCustomPopulation() {
+        assertFalse(PlayerPopulation.getCustomPopulation().isEmpty());
     }
 
     @Test
-    public void getIsolatedAbusivePlayerWithinGoodPopulation() {
-        List<Player> players = PlayerPopulation.getIsolatedAbusivePlayerWithinGoodPopulation(100);
-        assertEquals(players.size() - 1, players.stream().filter(player -> player.getStrategy().isNice()).count());
-        assertEquals(1L, players.stream().filter(player -> !player.getStrategy().isNice()).count());
+    public void getPopulationWithGoodAndBadPlayers() {
+        List<Player> players = PlayerPopulation.getPopulationWithGoodAndBadPlayers(2, 8);
+        assertEquals(2L, players.stream().filter(player -> player.getStrategy().isNice()).count());
+        assertEquals(8L, players.stream().filter(player -> !player.getStrategy().isNice()).count());
     }
 }

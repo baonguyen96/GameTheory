@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class KeepDefectOnceAttackedStrategy implements Strategy {
+public class KeepDefectOnceBeingAttackedStrategy implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.COOPERATE;
