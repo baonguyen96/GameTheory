@@ -42,6 +42,10 @@ public class Player {
         return score;
     }
 
+    public Strategy getStrategy() {
+        return this.strategy;
+    }
+
     public int getPlayerId() {
         return playerId;
     }
