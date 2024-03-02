@@ -8,7 +8,7 @@ import java.util.*;
 public class Player {
     private final Strategy strategy;
     private int score = 0;
-    private List<Move> lastMoves = null;
+    private List<Move> lastMoves = new LinkedList<>();
     private static int playerCount = 0;
     private final int playerId;
 
@@ -19,7 +19,7 @@ public class Player {
     }
 
     public Move play(Player opponent) {
-        Move move = opponent.lastMoves.isEmpty() || this.lastMoves.isEmpty()
+        Move move = (opponent.getLastMoves().isEmpty() || getLastMoves().isEmpty())
                 ? this.strategy.makeFirstMove()
                 : this.strategy.makeMove(opponent.lastMoves);
         this.lastMoves.add(move);
@@ -28,6 +28,10 @@ public class Player {
 
     public void resetAllMoves() {
         this.lastMoves = new LinkedList<>();
+    }
+
+    public List<Move> getLastMoves() {
+        return this.lastMoves;
     }
 
     public void increaseScore(int additionalScore) {

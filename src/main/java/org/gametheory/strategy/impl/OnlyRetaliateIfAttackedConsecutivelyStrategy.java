@@ -12,7 +12,7 @@ public class OnlyRetaliateIfAttackedConsecutivelyStrategy extends OnlyRetaliateI
         }
 
         boolean areLast2MovesDeflect = opponentLastMoves
-                .subList(opponentLastMoves.size() - 2, opponentLastMoves.size() - 1)
+                .subList(opponentLastMoves.size() - 2, opponentLastMoves.size())
                 .stream()
                 .allMatch(move -> move == Move.DEFLECT);
 

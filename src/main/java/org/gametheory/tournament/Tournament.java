@@ -16,7 +16,7 @@ public class Tournament {
         this.players = players;
     }
 
-    public void start() {
+    public int start() {
         System.out.printf("Starting tournament with %d round(s)\n", this.totalRounds);
         int matches = 0;
 
@@ -47,6 +47,7 @@ public class Tournament {
         }
 
         System.out.printf("%d-round(s) Tournament ended with %d matches\n", this.totalRounds, matches);
+        return matches;
     }
 
     private static int getPlayer1Score(Strategy.Move player1Move, Strategy.Move player2Move) {
