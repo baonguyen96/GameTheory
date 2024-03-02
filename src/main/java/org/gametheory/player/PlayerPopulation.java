@@ -1,4 +1,4 @@
-package org.gametheory;
+package org.gametheory.player;
 
 import org.gametheory.player.Player;
 import org.gametheory.strategy.Strategy;

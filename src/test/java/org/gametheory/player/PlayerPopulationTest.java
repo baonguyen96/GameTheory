@@ -1,6 +1,7 @@
-package org.gametheory;
+package org.gametheory.player;
 
 import org.gametheory.player.Player;
+import org.gametheory.player.PlayerPopulation;
 import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
 import org.gametheory.strategy.impl.AlwaysDeflectStrategy;
 import org.gametheory.strategy.impl.OnlyRetaliateIfAttackedConsecutivelyStrategy;

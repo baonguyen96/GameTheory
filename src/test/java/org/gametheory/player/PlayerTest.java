@@ -10,8 +10,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PlayerTest {
     private Player player;
@@ -57,5 +56,10 @@ public class PlayerTest {
     @Test
     public void getPlayerId() {
         assertTrue(player.getPlayerId() > 0);
+    }
+
+    @Test
+    public void equals() {
+        assertFalse(player.equals(new Player(null)));
     }
 }

@@ -1,6 +1,7 @@
 package org.gametheory;
 
 import org.gametheory.player.Player;
+import org.gametheory.player.PlayerPopulation;
 import org.gametheory.tournament.Tournament;
 
 import java.util.List;

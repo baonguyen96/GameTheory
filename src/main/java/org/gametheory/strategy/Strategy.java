@@ -6,5 +6,6 @@ public interface Strategy {
     enum Move { COOPERATE, DEFLECT }
 
     Move makeFirstMove();
+
     Move makeMove(List<Move> opponentLastMoves);
 }
