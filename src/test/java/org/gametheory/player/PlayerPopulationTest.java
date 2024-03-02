@@ -35,6 +35,6 @@ public class PlayerPopulationTest {
 
     @Test
     public void getBigPopulationPlayers() {
-        assertFalse(PlayerPopulation.getBigPopulationPlayers(10).isEmpty());
+        assertEquals(10, PlayerPopulation.getBigPopulationPlayers(10).size());
     }
 }
