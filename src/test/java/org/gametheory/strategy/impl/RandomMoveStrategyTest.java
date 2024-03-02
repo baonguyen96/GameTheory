@@ -19,12 +19,12 @@ public class RandomMoveStrategyTest {
     @Test
     public void makeFirstMove() {
         Strategy.Move move = strategy.makeFirstMove();
-        assertTrue(move == Strategy.Move.DEFLECT || move == Strategy.Move.COOPERATE);
+        assertTrue(move == Strategy.Move.DEFECT || move == Strategy.Move.COOPERATE);
     }
 
     @Test
     public void makeMove() {
         Strategy.Move move = strategy.makeMove(Collections.emptyList());
-        assertTrue(move == Strategy.Move.DEFLECT || move == Strategy.Move.COOPERATE);
+        assertTrue(move == Strategy.Move.DEFECT || move == Strategy.Move.COOPERATE);
     }
 }

@@ -44,6 +44,8 @@ public class Tournament {
                             round, player, playerMove, opponent, opponentMove, playerScore, opponentScore);
                 }
             }
+
+            System.out.println();
         }
 
         System.out.printf("%d-round(s) Tournament ended with %d matches\n", this.totalRounds, matches);
@@ -51,13 +53,13 @@ public class Tournament {
     }
 
     private static int getPlayer1Score(Strategy.Move player1Move, Strategy.Move player2Move) {
-        if (player1Move == Strategy.Move.DEFLECT && player2Move == Strategy.Move.DEFLECT) {
+        if (player1Move == Strategy.Move.DEFECT && player2Move == Strategy.Move.DEFECT) {
             return 1;
         }
-        else if (player1Move == Strategy.Move.DEFLECT && player2Move == Strategy.Move.COOPERATE) {
+        else if (player1Move == Strategy.Move.DEFECT && player2Move == Strategy.Move.COOPERATE) {
             return 5;
         }
-        else if (player1Move == Strategy.Move.COOPERATE && player2Move == Strategy.Move.DEFLECT) {
+        else if (player1Move == Strategy.Move.COOPERATE && player2Move == Strategy.Move.DEFECT) {
             return 0;
         }
         else {
@@ -76,7 +78,10 @@ public class Tournament {
                         .thenComparingInt(Player::getPlayerId))
                 .collect(Collectors.toList());
 
-        topScorers.forEach(player -> System.out.printf("%s has score: %d\n", player, player.getScore()));
+        for (int rank = 0; rank < topScorers.size(); rank++) {
+            Player player = topScorers.get(rank);
+            System.out.printf("%d - %s has score: %d\n", rank + 1, player, player.getScore());
+        }
 
         return topScorers.get(0);
     }

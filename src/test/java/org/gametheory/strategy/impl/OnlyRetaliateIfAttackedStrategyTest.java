@@ -28,7 +28,7 @@ public class OnlyRetaliateIfAttackedStrategyTest {
     }
 
     @Test
-    public void makeMove_deflect() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Collections.singletonList(Strategy.Move.DEFLECT)));
+    public void makeMove_defect() {
+        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Collections.singletonList(Strategy.Move.DEFECT)));
     }
 }

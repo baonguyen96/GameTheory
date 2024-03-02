@@ -1,31 +1,38 @@
 package org.gametheory.player;
 
+import org.apache.commons.collections.ListUtils;
 import org.gametheory.strategy.Strategy;
 import org.gametheory.strategy.impl.*;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PlayerPopulation {
-    public static List<Player> getCooperateAndDeflectPlayers() {
+    public static List<Player> getAlwaysCooperateAndDeflectPlayers() {
         return Arrays.asList(
                 new Player(new AlwaysCooperateStrategy()),
-                new Player(new AlwaysDeflectStrategy())
+                new Player(new AlwaysDefectStrategy())
         );
     }
 
     public static List<Player> getMixedButUniquePlayers() {
         return Arrays.asList(
                 new Player(new AlwaysCooperateStrategy()),
-                new Player(new AlwaysDeflectStrategy()),
-                new Player(new OnlyRetaliateIfAttackedStrategy()),
+                new Player(new AlwaysDefectStrategy()),
+                new Player(new CopyOpponentLastMoveStrategy()),
+                new Player(new DefectAtIntervalStrategy()),
+                new Player(new KeepDefectOnceAttackedStrategy()),
                 new Player(new OnlyRetaliateIfAttackedButAttackOnFirstMoveStrategy()),
                 new Player(new OnlyRetaliateIfAttackedConsecutivelyStrategy()),
+                new Player(new OnlyRetaliateIfAttackedStrategy()),
                 new Player(new RandomMoveStrategy())
         );
+    }
+
+    public static List<Player> getMixedButUniquePlayersTwice() {
+        List<Player> players = getMixedButUniquePlayers();
+        List<Player> clones = getMixedButUniquePlayers();
+        return ListUtils.union(players, clones);
     }
 
     public static List<Player> getBigPopulationPlayers(int size) {
@@ -40,11 +47,10 @@ public class PlayerPopulation {
         return  players;
     }
 
-    public static List<Player> getOnlyNicePlayers() {
-        return Arrays.asList(
-                new Player(new AlwaysCooperateStrategy()),
-                new Player(new OnlyRetaliateIfAttackedStrategy()),
-                new Player(new OnlyRetaliateIfAttackedConsecutivelyStrategy())
-        );
+    public static List<Player> getOnlyPlayersWhoDoNotDefectFirst() {
+        return getMixedButUniquePlayers()
+                .stream()
+                .filter(player -> player.getStrategy().makeFirstMove() != Strategy.Move.DEFECT)
+                .collect(Collectors.toList());
     }
 }

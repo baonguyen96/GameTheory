@@ -30,7 +30,7 @@ public class PlayerTest {
     public void playFirstMove() {
         Player opponent = new Player(strategy);
         Mockito.when(strategy.makeFirstMove()).thenReturn(Strategy.Move.COOPERATE);
-        Mockito.when(strategy.makeMove(Mockito.anyList())).thenReturn(Strategy.Move.DEFLECT);
+        Mockito.when(strategy.makeMove(Mockito.anyList())).thenReturn(Strategy.Move.DEFECT);
         Strategy.Move move = player.play(opponent);
         assertEquals(Strategy.Move.COOPERATE, move);
     }
@@ -38,12 +38,12 @@ public class PlayerTest {
     @Test
     public void playNextMove() {
         Player opponent = Mockito.mock(Player.class);
-        Mockito.when(opponent.getLastMoves()).thenReturn(Collections.singletonList(Strategy.Move.DEFLECT));
+        Mockito.when(opponent.getLastMoves()).thenReturn(Collections.singletonList(Strategy.Move.DEFECT));
         Mockito.when(strategy.makeFirstMove()).thenReturn(Strategy.Move.COOPERATE);
-        Mockito.when(strategy.makeMove(Mockito.any())).thenReturn(Strategy.Move.DEFLECT);
+        Mockito.when(strategy.makeMove(Mockito.any())).thenReturn(Strategy.Move.DEFECT);
         player.play(opponent);
         Strategy.Move move = player.play(opponent);
-        assertEquals(Strategy.Move.DEFLECT, move);
+        assertEquals(Strategy.Move.DEFECT, move);
     }
 
     @Test

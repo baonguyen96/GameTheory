@@ -8,21 +8,21 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class AlwaysDeflectStrategyTest {
+public class AlwaysDefectStrategyTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new AlwaysDeflectStrategy();
+        strategy = new AlwaysDefectStrategy();
     }
 
     @Test
     public void makeFirstMove() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeFirstMove());
+        assertEquals(Strategy.Move.DEFECT, strategy.makeFirstMove());
     }
 
     @Test
     public void makeMove() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Collections.emptyList()));
+        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Collections.emptyList()));
     }
 }

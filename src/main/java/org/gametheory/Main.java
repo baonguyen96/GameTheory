@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        List<Player> players = PlayerPopulation.getMixedButUniquePlayers();
+        List<Player> players = PlayerPopulation.getMixedButUniquePlayersTwice();
 
-        int tournamentRounds = new Random().nextInt(1000);
+        int tournamentRounds = new Random().nextInt(500);
 
         Tournament tournament = new Tournament(tournamentRounds, players);
 

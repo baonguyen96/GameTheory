@@ -1,7 +1,5 @@
 package org.gametheory.strategy.impl;
 
-import org.gametheory.strategy.Strategy;
-
 import java.util.List;
 
 public class OnlyRetaliateIfAttackedConsecutivelyStrategy extends OnlyRetaliateIfAttackedStrategy {
@@ -14,8 +12,8 @@ public class OnlyRetaliateIfAttackedConsecutivelyStrategy extends OnlyRetaliateI
         boolean areLast2MovesDeflect = opponentLastMoves
                 .subList(opponentLastMoves.size() - 2, opponentLastMoves.size())
                 .stream()
-                .allMatch(move -> move == Move.DEFLECT);
+                .allMatch(move -> move == Move.DEFECT);
 
-        return areLast2MovesDeflect ? Move.DEFLECT : Move.COOPERATE;
+        return areLast2MovesDeflect ? Move.DEFECT : Move.COOPERATE;
     }
 }

@@ -1,9 +1,8 @@
 package org.gametheory.player;
 
-import org.gametheory.player.Player;
-import org.gametheory.player.PlayerPopulation;
+import org.gametheory.strategy.Strategy;
 import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
-import org.gametheory.strategy.impl.AlwaysDeflectStrategy;
+import org.gametheory.strategy.impl.AlwaysDefectStrategy;
 import org.gametheory.strategy.impl.OnlyRetaliateIfAttackedConsecutivelyStrategy;
 import org.gametheory.strategy.impl.OnlyRetaliateIfAttackedStrategy;
 import org.junit.Test;
@@ -15,9 +14,9 @@ import static org.junit.Assert.*;
 public class PlayerPopulationTest {
     @Test
     public void getCooperateAndDeflectPlayers() {
-        List<Player> players = PlayerPopulation.getCooperateAndDeflectPlayers();
+        List<Player> players = PlayerPopulation.getAlwaysCooperateAndDeflectPlayers();
         assertTrue(players.get(0).getStrategy() instanceof AlwaysCooperateStrategy);
-        assertTrue(players.get(1).getStrategy() instanceof AlwaysDeflectStrategy);
+        assertTrue(players.get(1).getStrategy() instanceof AlwaysDefectStrategy);
     }
 
     @Test
@@ -27,14 +26,17 @@ public class PlayerPopulationTest {
 
     @Test
     public void getOnlyNicePlayers() {
-        List<Player> players = PlayerPopulation.getOnlyNicePlayers();
-        assertTrue(players.get(0).getStrategy() instanceof AlwaysCooperateStrategy);
-        assertTrue(players.get(1).getStrategy() instanceof OnlyRetaliateIfAttackedStrategy);
-        assertTrue(players.get(2).getStrategy() instanceof OnlyRetaliateIfAttackedConsecutivelyStrategy);
+        List<Player> players = PlayerPopulation.getOnlyPlayersWhoDoNotDefectFirst();
+        assertFalse(players.stream().allMatch(player -> player.getStrategy().makeFirstMove() == Strategy.Move.DEFECT));
     }
 
     @Test
     public void getBigPopulationPlayers() {
         assertEquals(10, PlayerPopulation.getBigPopulationPlayers(10).size());
+    }
+
+    @Test
+    public void getMixedButUniquePlayersTwice() {
+        assertEquals(PlayerPopulation.getMixedButUniquePlayers().size() * 2, PlayerPopulation.getMixedButUniquePlayersTwice().size());
     }
 }

@@ -18,6 +18,6 @@ public class RandomMoveStrategy implements Strategy {
 
     private Move makeRandomMove() {
         int random = new Random().nextInt() % 2;
-        return random == 0 ? Move.COOPERATE : Move.DEFLECT;
+        return random == 0 ? Move.COOPERATE : Move.DEFECT;
     }
 }

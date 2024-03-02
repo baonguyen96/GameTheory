@@ -21,11 +21,11 @@ public class OnlyRetaliateIfAttackedConsecutivelyStrategyTest {
     public void makeMove_cooperate() {
         assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.emptyList()));
         assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.singletonList(Strategy.Move.COOPERATE)));
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Arrays.asList(Strategy.Move.DEFLECT, Strategy.Move.COOPERATE)));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.COOPERATE)));
     }
 
     @Test
-    public void makeMove_deflect() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Arrays.asList(Strategy.Move.DEFLECT, Strategy.Move.DEFLECT)));
+    public void makeMove_defect() {
+        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.DEFECT)));
     }
 }

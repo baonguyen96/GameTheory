@@ -2,7 +2,7 @@ package org.gametheory.tournament;
 
 import org.gametheory.player.Player;
 import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
-import org.gametheory.strategy.impl.AlwaysDeflectStrategy;
+import org.gametheory.strategy.impl.AlwaysDefectStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class TournamentTest {
     @Before
     public void setUp() {
         cooperatePlayer = new Player(new AlwaysCooperateStrategy());
-        deflectPlayer = new Player(new AlwaysDeflectStrategy());
+        deflectPlayer = new Player(new AlwaysDefectStrategy());
         tournament = new Tournament(1, Arrays.asList(cooperatePlayer, deflectPlayer));
     }
 

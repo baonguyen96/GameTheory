@@ -16,6 +16,6 @@ public class OnlyRetaliateIfAttackedButAttackOnFirstMoveStrategyTest {
 
     @Test
     public void makeFirstMove() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeFirstMove());
+        assertEquals(Strategy.Move.DEFECT, strategy.makeFirstMove());
     }
 }
