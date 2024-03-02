@@ -4,9 +4,9 @@ import org.gametheory.strategy.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class RandomMoveStrategyTest {
     private Strategy strategy;
@@ -24,7 +24,7 @@ public class RandomMoveStrategyTest {
 
     @Test
     public void makeMove() {
-        Strategy.Move move = strategy.makeMove(List.of());
+        Strategy.Move move = strategy.makeMove(Collections.emptyList());
         assertTrue(move == Strategy.Move.DEFLECT || move == Strategy.Move.COOPERATE);
     }
 }

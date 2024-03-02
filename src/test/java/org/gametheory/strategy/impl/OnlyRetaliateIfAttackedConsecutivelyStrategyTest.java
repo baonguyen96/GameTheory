@@ -4,9 +4,10 @@ import org.gametheory.strategy.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OnlyRetaliateIfAttackedConsecutivelyStrategyTest {
     private Strategy strategy;
@@ -18,13 +19,13 @@ public class OnlyRetaliateIfAttackedConsecutivelyStrategyTest {
 
     @Test
     public void makeMove_cooperate() {
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of()));
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of(Strategy.Move.COOPERATE)));
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of(Strategy.Move.DEFLECT, Strategy.Move.COOPERATE)));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.emptyList()));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.singletonList(Strategy.Move.COOPERATE)));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Arrays.asList(Strategy.Move.DEFLECT, Strategy.Move.COOPERATE)));
     }
 
     @Test
     public void makeMove_deflect() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(List.of(Strategy.Move.DEFLECT, Strategy.Move.DEFLECT)));
+        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Arrays.asList(Strategy.Move.DEFLECT, Strategy.Move.DEFLECT)));
     }
 }

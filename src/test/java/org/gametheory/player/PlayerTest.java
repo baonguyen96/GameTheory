@@ -2,13 +2,12 @@ package org.gametheory.player;
 
 
 import org.gametheory.strategy.Strategy;
-import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.List;
+import java.util.Collections;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +38,7 @@ public class PlayerTest {
     @Test
     public void playNextMove() {
         Player opponent = Mockito.mock(Player.class);
-        Mockito.when(opponent.getLastMoves()).thenReturn(List.of(Strategy.Move.DEFLECT));
+        Mockito.when(opponent.getLastMoves()).thenReturn(Collections.singletonList(Strategy.Move.DEFLECT));
         Mockito.when(strategy.makeFirstMove()).thenReturn(Strategy.Move.COOPERATE);
         Mockito.when(strategy.makeMove(Mockito.any())).thenReturn(Strategy.Move.DEFLECT);
         player.play(opponent);

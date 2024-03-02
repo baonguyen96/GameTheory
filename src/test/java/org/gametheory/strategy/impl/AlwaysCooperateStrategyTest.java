@@ -1,13 +1,12 @@
 package org.gametheory.strategy.impl;
 
 import org.gametheory.strategy.Strategy;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AlwaysCooperateStrategyTest {
     private Strategy strategy;
@@ -24,6 +23,6 @@ public class AlwaysCooperateStrategyTest {
 
     @Test
     public void makeMove() {
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of()));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.emptyList()));
     }
 }

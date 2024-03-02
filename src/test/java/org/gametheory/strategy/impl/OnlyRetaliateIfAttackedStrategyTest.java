@@ -4,9 +4,9 @@ import org.gametheory.strategy.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OnlyRetaliateIfAttackedStrategyTest {
     private Strategy strategy;
@@ -23,12 +23,12 @@ public class OnlyRetaliateIfAttackedStrategyTest {
 
     @Test
     public void makeMove_cooperate() {
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of(Strategy.Move.COOPERATE)));
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(List.of()));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.singletonList(Strategy.Move.COOPERATE)));
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Collections.emptyList()));
     }
 
     @Test
     public void makeMove_deflect() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(List.of(Strategy.Move.DEFLECT)));
+        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Collections.singletonList(Strategy.Move.DEFLECT)));
     }
 }

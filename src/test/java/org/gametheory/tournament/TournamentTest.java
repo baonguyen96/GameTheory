@@ -3,13 +3,12 @@ package org.gametheory.tournament;
 import org.gametheory.player.Player;
 import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
 import org.gametheory.strategy.impl.AlwaysDeflectStrategy;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TournamentTest {
     private Tournament tournament;
@@ -20,7 +19,7 @@ public class TournamentTest {
     public void setUp() {
         cooperatePlayer = new Player(new AlwaysCooperateStrategy());
         deflectPlayer = new Player(new AlwaysDeflectStrategy());
-        tournament = new Tournament(1, List.of(cooperatePlayer, deflectPlayer));
+        tournament = new Tournament(1, Arrays.asList(cooperatePlayer, deflectPlayer));
     }
 
     @Test

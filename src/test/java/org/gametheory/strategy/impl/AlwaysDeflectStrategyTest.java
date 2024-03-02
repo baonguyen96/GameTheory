@@ -4,9 +4,9 @@ import org.gametheory.strategy.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class AlwaysDeflectStrategyTest {
     private Strategy strategy;
@@ -23,6 +23,6 @@ public class AlwaysDeflectStrategyTest {
 
     @Test
     public void makeMove() {
-        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(List.of()));
+        assertEquals(Strategy.Move.DEFLECT, strategy.makeMove(Collections.emptyList()));
     }
 }
