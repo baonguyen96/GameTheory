@@ -21,7 +21,7 @@ public class Player {
     public Move play(Player opponent) {
         Move move = (opponent.getLastMoves().isEmpty() || getLastMoves().isEmpty())
                 ? this.strategy.makeFirstMove()
-                : this.strategy.makeMove(opponent.lastMoves);
+                : this.strategy.makeMove(this.lastMoves, opponent.lastMoves);
         this.lastMoves.add(move);
         return move;
     }
@@ -68,6 +68,7 @@ public class Player {
         return "Player{" +
                 "playerId=" + playerId +
                 ", strategy=" + strategy.getClass().getSimpleName() +
+                ", isNice=" + strategy.isNice() +
                 '}';
     }
 }

@@ -16,6 +16,11 @@ public class RandomMoveStrategy implements Strategy {
         return makeRandomMove();
     }
 
+    @Override
+    public boolean isNice() {
+        return false;
+    }
+
     private Move makeRandomMove() {
         int random = new Random().nextInt() % 2;
         return random == 0 ? Move.COOPERATE : Move.DEFECT;

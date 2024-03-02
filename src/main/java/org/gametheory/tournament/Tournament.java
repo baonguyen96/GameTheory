@@ -18,6 +18,10 @@ public class Tournament {
 
     public int start() {
         System.out.printf("Starting tournament with %d round(s)\n", this.totalRounds);
+        System.out.printf("Players population: %d nice, %d not nice\n",
+                this.players.stream().filter(player -> player.getStrategy().isNice()).count(),
+                this.players.stream().filter(player -> !player.getStrategy().isNice()).count());
+
         int matches = 0;
 
         for (int playerIndex = 0; playerIndex < players.size(); playerIndex++) {

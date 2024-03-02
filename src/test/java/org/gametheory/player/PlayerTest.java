@@ -40,7 +40,7 @@ public class PlayerTest {
         Player opponent = Mockito.mock(Player.class);
         Mockito.when(opponent.getLastMoves()).thenReturn(Collections.singletonList(Strategy.Move.DEFECT));
         Mockito.when(strategy.makeFirstMove()).thenReturn(Strategy.Move.COOPERATE);
-        Mockito.when(strategy.makeMove(Mockito.any())).thenReturn(Strategy.Move.DEFECT);
+        Mockito.when(strategy.makeMove(Mockito.any(), Mockito.any())).thenReturn(Strategy.Move.DEFECT);
         player.play(opponent);
         Strategy.Move move = player.play(opponent);
         assertEquals(Strategy.Move.DEFECT, move);

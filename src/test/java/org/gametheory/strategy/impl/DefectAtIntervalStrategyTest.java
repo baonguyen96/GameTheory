@@ -16,7 +16,7 @@ public class DefectAtIntervalStrategyTest {
 
     @Before
     public void setUp() throws Exception {
-        strategy = new DefectAtIntervalStrategy();
+        strategy = new DefectAtIntervalStrategy(50);
     }
 
     @Test

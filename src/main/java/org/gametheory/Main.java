@@ -9,16 +9,15 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        List<Player> players = PlayerPopulation.getMixedButUniquePlayersTwice();
+        Random random = new Random();
+        int populationSize = random.nextInt(250);
+        int rounds = random.nextInt(200);
 
-        int tournamentRounds = new Random().nextInt(500);
-
-        Tournament tournament = new Tournament(tournamentRounds, players);
-
+        List<Player> players = PlayerPopulation.getBigPopulationPlayers(populationSize);
+        Tournament tournament = new Tournament(rounds, players);
         tournament.start();
 
         Player winner = tournament.getWinner();
-
         System.out.println("\nWinner is " + winner);
     }
 }
