@@ -42,6 +42,7 @@ public class PlayerPopulation {
                 new Player(new DefectAtIntervalStrategy()),
                 new Player(new DefectFirstAndKeepDefectIfNotRetaliatedStrategy()),
                 new Player(new DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy()),
+                new Player(new DetectPatternAndAdaptStrategy()),
                 new Player(new KeepDefectOnceBeingAttackedStrategy()),
                 new Player(new NextMoveBasedOnForecastFromHistoricalStrategy()),
                 new Player(new OnlyRetaliateIfBeingBeingAttackedButAttackOnFirstMoveStrategy()),

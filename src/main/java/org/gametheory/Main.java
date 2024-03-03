@@ -13,7 +13,7 @@ public class Main {
         int rounds = getRandomNumber(100, 300);
         boolean showMatches = false;
 
-        List<Player> players = PlayerPopulation.getPopulationWithGoodAndBadPlayers(1, populationSize - 1);
+        List<Player> players = PlayerPopulation.getPopulationWithGoodAndBadPlayers(populationSize / 2, populationSize / 2);
         Tournament tournament = new Tournament(rounds, players, showMatches);
         tournament.start();
 
