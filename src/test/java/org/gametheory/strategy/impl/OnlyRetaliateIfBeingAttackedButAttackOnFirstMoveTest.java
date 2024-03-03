@@ -4,25 +4,18 @@ import org.gametheory.strategy.Strategy;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collections;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertEquals;
-
-public class AlwaysDefectStrategyTest {
+public class OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new AlwaysDefectStrategy();
+        strategy = new OnlyRetaliateIfBeingAttackedButAttackOnFirstMove();
     }
 
     @Test
     public void makeFirstMove() {
         assertEquals(Strategy.Move.DEFECT, strategy.makeFirstMove());
-    }
-
-    @Test
-    public void makeMove() {
-        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Collections.emptyList()));
     }
 }

@@ -8,12 +8,12 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-public class CopyOpponentLastMoveStrategyTest {
+public class KeepDefectOnceBeingAttackedTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new CopyOpponentLastMoveStrategy();
+        strategy = new KeepDefectOnceBeingAttacked();
     }
 
     @Test
@@ -24,6 +24,6 @@ public class CopyOpponentLastMoveStrategyTest {
     @Test
     public void makeMove() {
         assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.DEFECT)));
-        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.COOPERATE)));
+        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.COOPERATE)));
     }
 }

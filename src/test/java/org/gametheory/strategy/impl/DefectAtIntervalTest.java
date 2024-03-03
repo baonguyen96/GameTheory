@@ -11,12 +11,12 @@ import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class DefectAtIntervalStrategyTest {
+public class DefectAtIntervalTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new DefectAtIntervalStrategy(50);
+        strategy = new DefectAtInterval(50);
     }
 
     @Test

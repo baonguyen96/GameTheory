@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class AlwaysDefectStrategy implements Strategy {
+public class AlwaysDefect implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.DEFECT;

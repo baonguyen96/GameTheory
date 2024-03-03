@@ -5,14 +5,14 @@ import org.gametheory.strategy.Strategy;
 import java.util.List;
 import java.util.Random;
 
-public class DefectAtIntervalStrategy implements Strategy {
+public class DefectAtInterval implements Strategy {
     private final int frequencyToDefect;
 
-    public DefectAtIntervalStrategy() {
+    public DefectAtInterval() {
         this(new Random().nextInt(100));
     }
 
-    public DefectAtIntervalStrategy(int frequencyToDefect) {
+    public DefectAtInterval(int frequencyToDefect) {
         this.frequencyToDefect = Math.max(1, frequencyToDefect);
     }
 

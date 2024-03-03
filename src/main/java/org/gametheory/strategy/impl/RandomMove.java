@@ -5,7 +5,7 @@ import org.gametheory.strategy.Strategy;
 import java.util.List;
 import java.util.Random;
 
-public class RandomMoveStrategy implements Strategy {
+public class RandomMove implements Strategy {
     @Override
     public Move makeFirstMove() {
         return makeRandomMove();

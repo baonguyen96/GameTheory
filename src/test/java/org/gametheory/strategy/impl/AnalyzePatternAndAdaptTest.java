@@ -11,14 +11,14 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DetectPatternAndAdaptStrategyTest {
+public class AnalyzePatternAndAdaptTest {
     private Strategy strategy;
     private List<Strategy.Move> myLastMoves;
     private List<Strategy.Move> opponentLastMoves;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new DetectPatternAndAdaptStrategy();
+        strategy = new AnalyzePatternAndAdapt();
         myLastMoves = Arrays.asList(Strategy.Move.COOPERATE, Strategy.Move.COOPERATE, Strategy.Move.DEFECT, Strategy.Move.COOPERATE);
         opponentLastMoves = Arrays.asList(Strategy.Move.COOPERATE, Strategy.Move.COOPERATE, Strategy.Move.DEFECT, Strategy.Move.COOPERATE);
     }

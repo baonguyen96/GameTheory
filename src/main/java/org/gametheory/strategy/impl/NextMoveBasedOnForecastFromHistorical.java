@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class NextMoveBasedOnForecastFromHistoricalStrategy extends RandomMoveStrategy {
+public class NextMoveBasedOnForecastFromHistorical extends RandomMove {
     @Override
     public Move makeMove(List<Move> myLastMoves, List<Move> opponentLastMoves) {
         int previousRounds = Math.min(myLastMoves.size(), opponentLastMoves.size());

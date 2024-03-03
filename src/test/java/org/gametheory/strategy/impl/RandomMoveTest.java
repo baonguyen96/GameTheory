@@ -8,12 +8,12 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertTrue;
 
-public class RandomMoveStrategyTest {
+public class RandomMoveTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new RandomMoveStrategy();
+        strategy = new RandomMove();
     }
 
     @Test

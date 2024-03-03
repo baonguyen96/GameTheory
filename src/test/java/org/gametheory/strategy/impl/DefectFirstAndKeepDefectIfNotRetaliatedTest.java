@@ -6,12 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class DefectFirstAndKeepDefectIfNotRetaliatedStrategyTest {
+public class DefectFirstAndKeepDefectIfNotRetaliatedTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new DefectFirstAndKeepDefectIfNotRetaliatedStrategy();
+        strategy = new DefectFirstAndKeepDefectIfNotRetaliated();
     }
 
     @Test

@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class DetectPatternAndAdaptStrategy implements Strategy {
+public class AnalyzePatternAndAdapt implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.COOPERATE;

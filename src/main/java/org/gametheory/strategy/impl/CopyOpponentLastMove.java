@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class KeepDefectOnceBeingAttackedStrategy implements Strategy {
+public class CopyOpponentLastMove implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.COOPERATE;
@@ -12,6 +12,6 @@ public class KeepDefectOnceBeingAttackedStrategy implements Strategy {
 
     @Override
     public Move makeMove(List<Move> opponentLastMoves) {
-        return opponentLastMoves.stream().anyMatch(move -> move == Move.DEFECT) ? Move.DEFECT : Move.COOPERATE;
+        return opponentLastMoves.isEmpty() ? makeFirstMove() : opponentLastMoves.get(opponentLastMoves.size() - 1);
     }
 }

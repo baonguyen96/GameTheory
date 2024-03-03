@@ -8,12 +8,12 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class AlwaysCooperateStrategyTest {
+public class AlwaysCooperateTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new AlwaysCooperateStrategy();
+        strategy = new AlwaysCooperate();
     }
 
     @Test

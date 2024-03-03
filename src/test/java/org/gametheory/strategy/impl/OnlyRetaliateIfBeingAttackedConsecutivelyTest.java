@@ -9,12 +9,12 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class OnlyRetaliateIfBeingAttackedConsecutivelyStrategyTest {
+public class OnlyRetaliateIfBeingAttackedConsecutivelyTest {
     private Strategy strategy;
 
     @Before
     public void setUp() {
-        strategy = new OnlyRetaliateIfBeingAttackedConsecutivelyStrategy();
+        strategy = new OnlyRetaliateIfBeingAttackedConsecutively();
     }
 
     @Test

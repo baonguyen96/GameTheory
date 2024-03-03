@@ -2,7 +2,7 @@ package org.gametheory.strategy.impl;
 
 import java.util.List;
 
-public class OnlyRetaliateIfBeingAttackedConsecutivelyStrategy extends OnlyRetaliateIfBeingAttackedStrategy {
+public class OnlyRetaliateIfBeingAttackedConsecutively extends OnlyRetaliateIfBeingAttacked {
     @Override
     public Move makeMove(List<Move> opponentLastMoves) {
         if (opponentLastMoves.size() < 2) {

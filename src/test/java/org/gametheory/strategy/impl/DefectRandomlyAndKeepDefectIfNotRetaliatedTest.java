@@ -11,12 +11,12 @@ import java.util.stream.IntStream;
 
 import static org.junit.Assert.*;
 
-public class DefectRandomlyAndKeepDefectIfNotRetaliatedStrategyTest {
+public class DefectRandomlyAndKeepDefectIfNotRetaliatedTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy();
+        strategy = new DefectRandomlyAndKeepDefectIfNotRetaliated();
     }
 
     @Test

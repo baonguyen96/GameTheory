@@ -2,7 +2,7 @@ package org.gametheory.strategy.impl;
 
 import java.util.List;
 
-public class DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy extends RandomMoveStrategy {
+public class DefectRandomlyAndKeepDefectIfNotRetaliated extends RandomMove {
     @Override
     public Move makeMove(List<Move> myLastMoves, List<Move> opponentLastMoves) {
         Move move = super.makeMove(opponentLastMoves);

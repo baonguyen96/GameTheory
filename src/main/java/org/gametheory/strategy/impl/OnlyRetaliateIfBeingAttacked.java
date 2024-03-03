@@ -4,7 +4,7 @@ import org.gametheory.strategy.Strategy;
 
 import java.util.List;
 
-public class CopyOpponentLastMoveStrategy implements Strategy {
+public class OnlyRetaliateIfBeingAttacked implements Strategy {
     @Override
     public Move makeFirstMove() {
         return Move.COOPERATE;
@@ -12,6 +12,7 @@ public class CopyOpponentLastMoveStrategy implements Strategy {
 
     @Override
     public Move makeMove(List<Move> opponentLastMoves) {
-        return opponentLastMoves.isEmpty() ? makeFirstMove() : opponentLastMoves.get(opponentLastMoves.size() - 1);
+        Move opponentLastMove = opponentLastMoves.isEmpty() ? null : opponentLastMoves.get(opponentLastMoves.size() - 1);
+        return opponentLastMove == Move.DEFECT ? Move.DEFECT : Move.COOPERATE;
     }
 }

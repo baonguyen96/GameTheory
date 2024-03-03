@@ -9,12 +9,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class NextMoveBasedOnForecastFromHistoricalStrategyTest {
+public class NextMoveBasedOnForecastFromHistoricalTest {
     private Strategy strategy;
 
     @Before
     public void setUp() throws Exception {
-        strategy = new NextMoveBasedOnForecastFromHistoricalStrategy();
+        strategy = new NextMoveBasedOnForecastFromHistorical();
     }
 
     @Test
