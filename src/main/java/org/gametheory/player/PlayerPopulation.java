@@ -3,10 +3,10 @@ package org.gametheory.player;
 import org.apache.commons.collections.ListUtils;
 import org.gametheory.strategy.Strategy;
 import org.gametheory.strategy.impl.*;
+import org.reflections.Reflections;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PlayerPopulation {
     public static List<Player> getAlwaysCooperateAndDeflectPlayers() {
@@ -32,44 +32,38 @@ public class PlayerPopulation {
         );
     }
 
-    public static List<Player> getMixedButUniquePlayers() {
-        return Arrays.asList(
-                new Player(new AlternateMoveCooperateFirst()),
-                new Player(new AlternateMoveDefectFirst()),
-                new Player(new AlwaysCooperateStrategy()),
-                new Player(new AlwaysDefectStrategy()),
-                new Player(new CopyOpponentLastMoveStrategy()),
-                new Player(new DefectAtIntervalStrategy()),
-                new Player(new DefectFirstAndKeepDefectIfNotRetaliatedStrategy()),
-                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy()),
-                new Player(new DetectPatternAndAdaptStrategy()),
-                new Player(new KeepDefectOnceBeingAttackedStrategy()),
-                new Player(new NextMoveBasedOnForecastFromHistoricalStrategy()),
-                new Player(new OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategy()),
-                new Player(new OnlyRetaliateIfBeingAttackedConsecutivelyStrategy()),
-                new Player(new OnlyRetaliateIfBeingAttackedStrategy()),
-                new Player(new RandomMoveStrategy())
-        );
+    public static List<Player> getMixedButUniquePlayers() throws Exception {
+        Reflections reflections = new Reflections("org.gametheory.strategy.impl");
+        Set<Class<?>> strategies = new HashSet<>(reflections.getSubTypesOf(Strategy.class));
+        List<Player> players = new LinkedList<>();
+
+        for (Class<?> strategy : strategies) {
+            players.add(new Player((Strategy) strategy.newInstance()));
+        }
+
+        return players;
     }
 
-    public static List<Player> getMixedButUniquePlayersTwice() {
+    public static List<Player> getMixedButUniquePlayersTwice() throws Exception {
         List<Player> players = getMixedButUniquePlayers();
         List<Player> clones = getMixedButUniquePlayers();
         return ListUtils.union(players, clones);
     }
 
-    public static List<Player> getBigPopulationPlayers(int size) {
+    public static List<Player> getBigPopulationPlayers(int size) throws Exception {
         return getBigPopulationPlayers(size, null);
     }
 
-    private static List<Player> getBigPopulationPlayers(int size, Boolean filterStrategyCharacteristic) {
-        Stream<Strategy> distinctStrategies = getMixedButUniquePlayers().stream().map(Player::getStrategy);
+    private static List<Player> getBigPopulationPlayers(int size, Boolean filterStrategyCharacteristic) throws Exception {
+        List<Strategy> strategies = getMixedButUniquePlayers()
+                .stream()
+                .map(Player::getStrategy)
+                .distinct()
+                .filter(strategy -> filterStrategyCharacteristic == null
+                        ? (strategy.isNice() || !strategy.isNice())
+                        : (strategy.isNice() == filterStrategyCharacteristic))
+                .collect(Collectors.toList());
 
-        if (filterStrategyCharacteristic != null) {
-            distinctStrategies = distinctStrategies.filter(strategy -> strategy.isNice() == filterStrategyCharacteristic);
-        }
-
-        List<Strategy> strategies = distinctStrategies.collect(Collectors.toList());
         Collections.shuffle(strategies);
         List<Player> players = new LinkedList<>();
         Random random = new Random();
@@ -81,12 +75,12 @@ public class PlayerPopulation {
         return players;
     }
 
-    public static List<Player> getOnlyPlayersWhoCooperateFirst() {
+    public static List<Player> getOnlyPlayersWhoCooperateFirst() throws Exception {
         List<Player> players = getMixedButUniquePlayers();
         return getPlayersWithStrategyCharacteristic(players, true);
     }
 
-    public static List<Player> getOnlyPlayersWhoDefectFirst() {
+    public static List<Player> getOnlyPlayersWhoDefectFirst() throws Exception {
         List<Player> players = getMixedButUniquePlayers();
         return getPlayersWithStrategyCharacteristic(players, false);
     }
@@ -98,7 +92,7 @@ public class PlayerPopulation {
                 .collect(Collectors.toList());
     }
 
-    public static List<Player> getPopulationWithGoodAndBadPlayers(int goodPlayerCount, int badPlayerCount) {
+    public static List<Player> getPopulationWithGoodAndBadPlayers(int goodPlayerCount, int badPlayerCount) throws Exception {
         List<Player> goodPlayers = getBigPopulationPlayers(goodPlayerCount, true);
         List<Player> badPlayers = getBigPopulationPlayers(badPlayerCount, false);
         return ListUtils.union(goodPlayers, badPlayers);

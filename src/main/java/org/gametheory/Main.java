@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int populationSize = getRandomNumber(500, 1000);
         int rounds = getRandomNumber(100, 300);
         boolean showMatches = false;

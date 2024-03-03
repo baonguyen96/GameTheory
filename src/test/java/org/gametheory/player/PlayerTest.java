@@ -59,6 +59,6 @@ public class PlayerTest {
 
     @Test
     public void equals() {
-        assertFalse(player.equals(new Player(null)));
+        assertNotEquals(player, new Player(null));
     }
 }
