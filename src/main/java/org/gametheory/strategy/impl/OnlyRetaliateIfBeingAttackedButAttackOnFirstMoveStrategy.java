@@ -1,6 +1,6 @@
 package org.gametheory.strategy.impl;
 
-public class OnlyRetaliateIfBeingBeingAttackedButAttackOnFirstMoveStrategy extends OnlyRetaliateIfBeingAttackedStrategy {
+public class OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategy extends OnlyRetaliateIfBeingAttackedStrategy {
     @Override
     public Move makeFirstMove() {
         return Move.DEFECT;

@@ -14,7 +14,7 @@ public class OnlyRetaliateIfBeingAttackedConsecutivelyStrategyTest {
 
     @Before
     public void setUp() {
-        strategy = new OnlyRetaliateIfBeingBeingAttackedConsecutivelyStrategy();
+        strategy = new OnlyRetaliateIfBeingAttackedConsecutivelyStrategy();
     }
 
     @Test

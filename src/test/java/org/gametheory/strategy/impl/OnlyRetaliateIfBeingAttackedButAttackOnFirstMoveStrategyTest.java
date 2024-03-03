@@ -11,7 +11,7 @@ public class OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategyTest {
 
     @Before
     public void setUp() {
-        strategy = new OnlyRetaliateIfBeingBeingAttackedButAttackOnFirstMoveStrategy();
+        strategy = new OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategy();
     }
 
     @Test

@@ -45,8 +45,8 @@ public class PlayerPopulation {
                 new Player(new DetectPatternAndAdaptStrategy()),
                 new Player(new KeepDefectOnceBeingAttackedStrategy()),
                 new Player(new NextMoveBasedOnForecastFromHistoricalStrategy()),
-                new Player(new OnlyRetaliateIfBeingBeingAttackedButAttackOnFirstMoveStrategy()),
-                new Player(new OnlyRetaliateIfBeingBeingAttackedConsecutivelyStrategy()),
+                new Player(new OnlyRetaliateIfBeingAttackedButAttackOnFirstMoveStrategy()),
+                new Player(new OnlyRetaliateIfBeingAttackedConsecutivelyStrategy()),
                 new Player(new OnlyRetaliateIfBeingAttackedStrategy()),
                 new Player(new RandomMoveStrategy())
         );
