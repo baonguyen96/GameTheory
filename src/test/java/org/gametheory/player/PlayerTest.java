@@ -61,4 +61,11 @@ public class PlayerTest {
     public void equals() {
         assertNotEquals(player, new Player(null));
     }
+
+    @Test
+    public void testClone() {
+        Player clone = player.clone();
+        assertEquals(player.getStrategy(), clone.getStrategy());
+        assertNotEquals(player.getPlayerId(), clone.getPlayerId());
+    }
 }

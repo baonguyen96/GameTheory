@@ -1,7 +1,7 @@
 package org.gametheory.player;
 
-import org.gametheory.strategy.impl.AlwaysCooperateStrategy;
-import org.gametheory.strategy.impl.AlwaysDefectStrategy;
+import org.gametheory.strategy.impl.AlwaysCooperate;
+import org.gametheory.strategy.impl.AlwaysDefect;
 import org.junit.Test;
 
 import java.util.List;
@@ -12,8 +12,8 @@ public class PlayerPopulationTest {
     @Test
     public void getAlwaysCooperateAndDeflectPlayers() {
         List<Player> players = PlayerPopulation.getAlwaysCooperateAndDeflectPlayers();
-        assertTrue(players.get(0).getStrategy() instanceof AlwaysCooperateStrategy);
-        assertTrue(players.get(1).getStrategy() instanceof AlwaysDefectStrategy);
+        assertTrue(players.get(0).getStrategy() instanceof AlwaysCooperate);
+        assertTrue(players.get(1).getStrategy() instanceof AlwaysDefect);
     }
 
     @Test

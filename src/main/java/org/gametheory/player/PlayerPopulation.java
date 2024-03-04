@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
 public class PlayerPopulation {
     public static List<Player> getAlwaysCooperateAndDeflectPlayers() {
         return Arrays.asList(
-                new Player(new AlwaysCooperateStrategy()),
-                new Player(new AlwaysDefectStrategy())
+                new Player(new AlwaysCooperate()),
+                new Player(new AlwaysDefect())
         );
     }
 
     public static List<Player> getSameTypeOfPlayers() {
         return Arrays.asList(
-                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy()),
-                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliatedStrategy())
+                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliated()),
+                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliated())
         );
     }
 
@@ -27,8 +27,8 @@ public class PlayerPopulation {
         return Arrays.asList(
                 new Player(new AlternateMoveCooperateFirst()),
                 new Player(new AlternateMoveDefectFirst()),
-                new Player(new AlwaysCooperateStrategy()),
-                new Player(new AlwaysDefectStrategy())
+                new Player(new AlwaysCooperate()),
+                new Player(new AlwaysDefect())
         );
     }
 

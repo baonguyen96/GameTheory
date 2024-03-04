@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomMove implements Strategy {
+    private static final Random random = new Random();
+
     @Override
     public Move makeFirstMove() {
         return makeRandomMove();
@@ -22,7 +24,7 @@ public class RandomMove implements Strategy {
     }
 
     private Move makeRandomMove() {
-        int random = new Random().nextInt() % 2;
+        int random = RandomMove.random.nextInt() % 2;
         return random == 0 ? Move.COOPERATE : Move.DEFECT;
     }
 }

@@ -16,4 +16,16 @@ public interface Strategy {
     default boolean isNice() {
         return makeFirstMove() == Move.COOPERATE;
     }
+
+    default boolean equals(Strategy strategy) {
+        if (strategy == null) {
+            return false;
+        }
+
+        return this.getClass().getName().equals(strategy.getClass().getName());
+    }
+
+    default String getName() {
+        return this.getClass().getSimpleName();
+    }
 }

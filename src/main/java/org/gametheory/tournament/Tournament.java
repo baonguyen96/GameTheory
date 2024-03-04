@@ -8,21 +8,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tournament {
-    private final int totalRounds;
-    private final List<Player> players;
-    private final boolean showMatches;
+    protected final int totalRounds;
+    protected List<Player> players;
+    protected final boolean showMatches;
 
-    public Tournament(int totalRounds, List<Player> players) {
-        this(totalRounds, players, true);
-    }
-
-    public Tournament(int totalRounds, List<Player> players, boolean showMatches) {
-        this.totalRounds = totalRounds;
-        this.players = players;
-        this.showMatches = showMatches;
+    public Tournament(TournamentConfig tournamentConfig) {
+        this.players = tournamentConfig.getPlayers();
+        this.totalRounds = tournamentConfig.getRoundPerCycle();
+        this.showMatches = tournamentConfig.isShowMatches();
     }
 
     public int start() {
+        return start(players);
+    }
+
+    final protected int start(List<Player> players) {
         List<String> uniqueStrategies =  players
                 .stream()
                 .map(player -> player.getStrategy().getClass().getSimpleName())
@@ -60,7 +60,7 @@ public class Tournament {
 
                     if (showMatches) {
                         System.out.printf("Round %d : %s (%s) vs Player %s (%s) : %d vs %d\n",
-                                round, player, playerMove, opponent, opponentMove, playerScore, opponentScore);
+                                round + 1, player, playerMove, opponent, opponentMove, playerScore, opponentScore);
                     }
                 }
             }
@@ -89,16 +89,14 @@ public class Tournament {
         }
     }
 
-    public Player getWinner() {
+    final public Player getWinner() {
+        return getWinner(players);
+    }
+
+    protected static Player getWinner(List<Player> players) {
         System.out.println("\nScore board:");
 
-        List<Player> topScorers = players
-                .stream()
-                .sorted(Comparator
-                        .comparingInt(Player::getScore)
-                        .reversed()
-                        .thenComparingInt(Player::getPlayerId))
-                .collect(Collectors.toList());
+        List<Player> topScorers = getRankedPlayers(players);
 
         for (int rank = 0; rank < topScorers.size(); rank++) {
             Player player = topScorers.get(rank);
@@ -106,5 +104,15 @@ public class Tournament {
         }
 
         return topScorers.get(0);
+    }
+
+    protected static List<Player> getRankedPlayers(List<Player> players) {
+        return players
+                .stream()
+                .sorted(Comparator
+                        .comparingInt(Player::getScore)
+                        .reversed()
+                        .thenComparingInt(Player::getPlayerId))
+                .collect(Collectors.toList());
     }
 }

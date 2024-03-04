@@ -5,7 +5,7 @@ import org.gametheory.strategy.Strategy.Move;
 
 import java.util.*;
 
-public class Player {
+public class Player implements Cloneable {
     private final Strategy strategy;
     private int score = 0;
     private List<Move> lastMoves = new LinkedList<>();
@@ -77,5 +77,10 @@ public class Player {
                 ", strategy=" + strategy.getClass().getSimpleName() +
                 ", isNice=" + strategy.isNice() +
                 '}';
+    }
+
+    @Override
+    public Player clone() {
+        return new Player(strategy);
     }
 }
