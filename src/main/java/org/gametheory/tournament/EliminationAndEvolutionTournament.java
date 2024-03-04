@@ -1,10 +1,12 @@
 package org.gametheory.tournament;
 
-import org.apache.commons.collections.ListUtils;
 import org.gametheory.player.Player;
 import org.gametheory.strategy.Strategy;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class EliminationAndEvolutionTournament extends Tournament {
@@ -41,11 +43,8 @@ public class EliminationAndEvolutionTournament extends Tournament {
         System.out.printf("%d-cycle(s) EliminationAndEvolutionTournament ended with %d matches\n\n", cycles, matches);
 
         showPopulationComparison(this.players, currentPlayers);
-
         showMostPopularStrategies(this.players, "before");
-
         showMostPopularStrategies(currentPlayers, "after");
-
         showEliminatedStrategies(this.players, currentPlayers);
 
         this.players = currentPlayers;
@@ -124,9 +123,12 @@ public class EliminationAndEvolutionTournament extends Tournament {
 
     List<Player> evolve(List<Player> currentPlayers) {
         System.out.printf("Eliminating worst %d player(s) and replacing them with top %d player(s)\n", replacementCount, replacementCount);
+
         List<Player> rankedPlayers = getRankedPlayers(currentPlayers);
         List<Player> topPlayers = rankedPlayers.subList(0, replacementCount);
         List<Player> removedBottomPlayers = rankedPlayers.subList(0, rankedPlayers.size() - replacementCount);
-        return clonePlayers(ListUtils.union(removedBottomPlayers, topPlayers));
+        removedBottomPlayers.addAll(topPlayers);
+
+        return clonePlayers(removedBottomPlayers);
     }
 }
