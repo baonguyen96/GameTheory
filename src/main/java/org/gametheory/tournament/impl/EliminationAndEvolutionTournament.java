@@ -1,14 +1,15 @@
-package org.gametheory.tournament;
+package org.gametheory.tournament.impl;
 
 import org.gametheory.player.Player;
 import org.gametheory.strategy.Strategy;
+import org.gametheory.tournament.TournamentConfig;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class EliminationAndEvolutionTournament extends Tournament {
+public class EliminationAndEvolutionTournament extends RoundRobinTournament {
     private final int cycles;
     private final int replacementCount;
 

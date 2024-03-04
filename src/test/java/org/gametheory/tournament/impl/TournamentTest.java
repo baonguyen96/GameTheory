@@ -1,8 +1,9 @@
-package org.gametheory.tournament;
+package org.gametheory.tournament.impl;
 
 import org.gametheory.player.Player;
 import org.gametheory.strategy.impl.AlwaysCooperate;
 import org.gametheory.strategy.impl.AlwaysDefect;
+import org.gametheory.tournament.TournamentConfig;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,8 +20,12 @@ public class TournamentTest {
     public void setUp() {
         cooperatePlayer = new Player(new AlwaysCooperate());
         deflectPlayer = new Player(new AlwaysDefect());
-        TournamentConfig tournamentConfig = new TournamentConfig(Arrays.asList(cooperatePlayer, deflectPlayer), 1, 1, true, 10);
-        tournament = new Tournament(tournamentConfig);
+        TournamentConfig tournamentConfig = TournamentConfig
+                .builder()
+                .withPlayers(Arrays.asList(cooperatePlayer, deflectPlayer))
+                .withRound(1)
+                .build();
+        tournament = new RoundRobinTournament(tournamentConfig);
     }
 
     @Test

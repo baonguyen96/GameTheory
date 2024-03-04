@@ -1,8 +1,10 @@
-package org.gametheory.tournament;
+package org.gametheory.tournament.impl;
 
 import org.gametheory.player.Player;
 import org.gametheory.strategy.impl.AlwaysCooperate;
 import org.gametheory.strategy.impl.AlwaysDefect;
+import org.gametheory.tournament.TournamentConfig;
+import org.gametheory.tournament.impl.EliminationAndEvolutionTournament;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +32,13 @@ public class EliminationAndEvolutionTournamentTest {
 
         players = Arrays.asList(coopPlayer1, coopPlayer2, defectPlayer1, defectPlayer2);
 
-        TournamentConfig tournamentConfig = new TournamentConfig(players, 2, 1, false, 25);
+        TournamentConfig tournamentConfig = TournamentConfig
+                .builder()
+                .withPlayers(players)
+                .withCycle(2)
+                .withRound(1)
+                .withReplacementPercentage(25)
+                .build();
         tournament = new EliminationAndEvolutionTournament(tournamentConfig);
     }
 
