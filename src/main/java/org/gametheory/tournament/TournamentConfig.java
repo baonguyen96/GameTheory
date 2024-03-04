@@ -7,7 +7,6 @@ import java.util.List;
 public class TournamentConfig {
     private final List<Player> players;
     private final int cycle;
-
     private final int roundPerCycle;
     private final boolean showMatches;
     private final int replacementPercentage;
