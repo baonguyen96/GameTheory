@@ -23,7 +23,7 @@ public class RandomMove implements Strategy {
         return false;
     }
 
-    private Move makeRandomMove() {
+    final protected Move makeRandomMove() {
         int random = RandomMove.random.nextInt() % 2;
         return random == 0 ? Move.COOPERATE : Move.DEFECT;
     }

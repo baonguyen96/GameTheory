@@ -31,7 +31,7 @@ public class NextMoveBasedOnForecastFromHistorical extends RandomMove {
         }
 
         int maxCombo = Collections.max(Arrays.asList(iDefectOpponentCooperate, iDefectOpponentDefect, iCooperateOpponentCooperate, iCooperateOpponentDefect));
-        Move move = null;
+        Move move;
 
         // rank in order of preferable outcome
         if (iDefectOpponentCooperate == maxCombo) {

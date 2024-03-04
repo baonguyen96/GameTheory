@@ -5,7 +5,7 @@ import java.util.List;
 public class DefectRandomlyAndKeepDefectIfNotRetaliated extends RandomMove {
     @Override
     public Move makeMove(List<Move> myLastMoves, List<Move> opponentLastMoves) {
-        Move move = super.makeMove(opponentLastMoves);
+        Move move = super.makeRandomMove();
         Move opponentLastMove = opponentLastMoves.isEmpty() ? null : opponentLastMoves.get(opponentLastMoves.size() - 1);
         Move myLastMove = myLastMoves.isEmpty() ? null : myLastMoves.get(myLastMoves.size() - 1);
 

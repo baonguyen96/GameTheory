@@ -15,8 +15,8 @@ public class Simpleton extends RandomMove {
 
     @Override
     public Move makeMove(List<Move> myLastMoves, List<Move> opponentLastMoves) {
-        Move move = super.makeMove(opponentLastMoves);
-        Move opponentLastMove = opponentLastMoves.isEmpty() ? super.makeMove(opponentLastMoves) : opponentLastMoves.get(opponentLastMoves.size() - 1);
+        Move move = makeRandomMove();
+        Move opponentLastMove = opponentLastMoves.isEmpty() ? makeRandomMove() : opponentLastMoves.get(opponentLastMoves.size() - 1);
         Move myLastMove = myLastMoves.isEmpty() ? move : myLastMoves.get(myLastMoves.size() - 1);
 
         if (opponentLastMove == Move.COOPERATE) {
