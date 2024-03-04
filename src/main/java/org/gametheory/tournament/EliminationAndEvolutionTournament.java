@@ -3,7 +3,6 @@ package org.gametheory.tournament;
 import org.gametheory.player.Player;
 import org.gametheory.strategy.Strategy;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -54,14 +53,12 @@ public class EliminationAndEvolutionTournament extends Tournament {
 
     private void showPopulationComparison(List<Player> beforePlayers, List<Player> afterPlayers) {
         long nicePopulationBefore = beforePlayers.stream().filter(player -> player.getStrategy().isNice()).count();
+        long notNicePopulationBefore = beforePlayers.stream().filter(player -> !player.getStrategy().isNice()).count();
         long nicePopulationAfter = afterPlayers.stream().filter(player -> player.getStrategy().isNice()).count();
+        long notNicePopulationAfter = afterPlayers.stream().filter(player -> !player.getStrategy().isNice()).count();
 
-        System.out.printf("Original population: %d nice, %d not nice\n",
-                nicePopulationBefore,
-                beforePlayers.stream().filter(player -> !player.getStrategy().isNice()).count());
-        System.out.printf("Evolved population: %d nice, %d not nice\n\n",
-                nicePopulationAfter,
-                afterPlayers.stream().filter(player -> !player.getStrategy().isNice()).count());
+        System.out.printf("Original population: %d nice, %d not nice\n", nicePopulationBefore, notNicePopulationBefore);
+        System.out.printf("Evolved population: %d nice, %d not nice\n\n", nicePopulationAfter,notNicePopulationAfter);
 
         if (nicePopulationBefore > nicePopulationAfter) {
             System.out.println("Unfortunately, the world is getting worse :(");
@@ -112,13 +109,10 @@ public class EliminationAndEvolutionTournament extends Tournament {
     }
 
     List<Player> clonePlayers(List<Player> currentPlayers) {
-        List<Player> newPlayers = new ArrayList<>();
-
-        for (Player player : currentPlayers) {
-            newPlayers.add(player.clone());
-        }
-
-        return newPlayers;
+        return currentPlayers
+                .stream()
+                .map(Player::clone)
+                .collect(Collectors.toList());
     }
 
     List<Player> evolve(List<Player> currentPlayers) {
