@@ -4,7 +4,6 @@ import org.gametheory.player.Player;
 import org.gametheory.strategy.impl.AlwaysCooperate;
 import org.gametheory.strategy.impl.AlwaysDefect;
 import org.gametheory.tournament.TournamentConfig;
-import org.gametheory.tournament.impl.EliminationAndEvolutionTournament;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,7 +62,7 @@ public class EliminationAndEvolutionTournamentTest {
         List<Player> evolvedPlayers = tournament.evolve(players);
 
         assertEquals(players.size(), evolvedPlayers.size());
-        assertEquals(1L, evolvedPlayers.stream().filter(player -> player.getStrategy().equals(new AlwaysCooperate())).count());
-        assertEquals(3L, evolvedPlayers.stream().filter(player -> player.getStrategy().equals(new AlwaysDefect())).count());
+        assertEquals(1L, evolvedPlayers.stream().filter(player -> player.getStrategy().is(new AlwaysCooperate())).count());
+        assertEquals(3L, evolvedPlayers.stream().filter(player -> player.getStrategy().is(new AlwaysDefect())).count());
     }
 }

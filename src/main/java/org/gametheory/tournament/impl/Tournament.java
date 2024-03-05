@@ -6,12 +6,15 @@ import org.gametheory.tournament.TournamentConfig;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public abstract class Tournament {
     protected final int totalRounds;
     protected List<Player> players;
     protected final boolean showMatches;
+
+    protected enum MatchResult { Win, Tie, Lose }
 
     public Tournament(TournamentConfig tournamentConfig) {
         this.players = tournamentConfig.getPlayers();
@@ -21,9 +24,9 @@ public abstract class Tournament {
 
     public abstract int start();
 
-    final protected void match(Player player, Player opponent) {
-        int playerCurrentScore = player.getScore();
-        int opponentCurrentScore = player.getScore();
+    final protected MatchResult match(Player player, Player opponent) {
+        int playerScoreGained = 0;
+        int opponentScoreGained = 0;
 
         player.resetAllMoves();
         opponent.resetAllMoves();
@@ -35,6 +38,9 @@ public abstract class Tournament {
             int playerScore = getPlayer1Score(playerMove, opponentMove);
             int opponentScore = getPlayer1Score(opponentMove, playerMove);
 
+            playerScoreGained += playerScore;
+            opponentScoreGained += opponentScore;
+
             player.increaseScore(playerScore);
             opponent.increaseScore(opponentScore);
 
@@ -44,23 +50,35 @@ public abstract class Tournament {
             }
         }
 
-        int playerScoreGained = player.getScore() - playerCurrentScore;
-        int opponentScoreGained = opponent.getScore() - opponentCurrentScore;
-        String outcome;
+        MatchResult matchResult;
 
         if (playerScoreGained > opponentScoreGained) {
-            outcome = "won";
+            matchResult = MatchResult.Win;
         } else if (playerScoreGained == opponentScoreGained) {
-            outcome = "tied";
+            matchResult = MatchResult.Tie;
         }
         else {
-            outcome = "lost";
+            matchResult = MatchResult.Lose;
         }
 
-        System.out.printf("%s %s against %s : %d vs %d\n", player, outcome, opponent, playerScoreGained, opponentScoreGained);
+        System.out.printf("%s %s against %s : %d vs %d\n", player, matchResult, opponent, playerScoreGained, opponentScoreGained);
+
+        return matchResult;
     }
 
-    private static int getPlayer1Score(Strategy.Move player1Move, Strategy.Move player2Move) {
+    static List<Strategy> getUniqueStrategies(List<Player> players) {
+        return players
+                .stream()
+                .map(Player::getStrategy)
+                .collect(Collectors.toMap(Strategy::getName, strategy -> strategy, (existing, replacement) -> existing))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+    }
+
+    static int getPlayer1Score(Strategy.Move player1Move, Strategy.Move player2Move) {
         if (player1Move == Strategy.Move.DEFECT && player2Move == Strategy.Move.DEFECT) {
             return 1;
         }
@@ -75,7 +93,7 @@ public abstract class Tournament {
         }
     }
 
-    final public Player getWinner() {
+    public Player getWinner() {
         return getWinner(players);
     }
 
@@ -92,7 +110,7 @@ public abstract class Tournament {
         return topScorers.get(0);
     }
 
-    protected static List<Player> getRankedPlayers(List<Player> players) {
+    static List<Player> getRankedPlayers(List<Player> players) {
         return players
                 .stream()
                 .sorted(Comparator

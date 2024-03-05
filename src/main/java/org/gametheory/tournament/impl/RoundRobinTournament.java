@@ -1,6 +1,7 @@
 package org.gametheory.tournament.impl;
 
 import org.gametheory.player.Player;
+import org.gametheory.strategy.Strategy;
 import org.gametheory.tournament.TournamentConfig;
 
 import java.util.Comparator;
@@ -18,18 +19,14 @@ public class RoundRobinTournament extends Tournament {
     }
 
     final protected int start(List<Player> players) {
-        List<String> uniqueStrategies =  players
-                .stream()
-                .map(player -> player.getStrategy().getClass().getSimpleName())
-                .distinct()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
-
-        System.out.printf("Starting tournament with %d round(s) and %d player(s)\n", totalRounds, players.size());
+        List<Strategy> uniqueStrategies = getUniqueStrategies(players);
+        System.out.printf("Starting %s with %d round(s) and %d player(s)\n", this.getClass().getSimpleName(), totalRounds, players.size());
         System.out.printf("Players population: %d nice, %d not nice\n",
                 players.stream().filter(player -> player.getStrategy().isNice()).count(),
                 players.stream().filter(player -> !player.getStrategy().isNice()).count());
-        System.out.printf("%d unique strategies: %s\n\n", uniqueStrategies.size(), uniqueStrategies);
+        System.out.printf("%d unique strategies: %s\n\n",
+                uniqueStrategies.size(),
+                uniqueStrategies.stream().map(Strategy::getName));
 
         int matches = 0;
 
@@ -44,7 +41,7 @@ public class RoundRobinTournament extends Tournament {
             }
         }
 
-        System.out.printf("%d-round(s) Tournament ended with %d matches from %d players\n", totalRounds, matches, players.size());
+        System.out.printf("%d-round(s) %s ended with %d matches from %d players\n", totalRounds, this.getClass().getSimpleName(), matches, players.size());
         return matches;
     }
 }

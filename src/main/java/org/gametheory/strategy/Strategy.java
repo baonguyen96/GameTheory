@@ -17,7 +17,7 @@ public interface Strategy {
         return makeFirstMove() == Move.COOPERATE;
     }
 
-    default boolean equals(Strategy strategy) {
+    default boolean is(Strategy strategy) {
         if (strategy == null) {
             return false;
         }
