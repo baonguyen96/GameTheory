@@ -61,7 +61,9 @@ public abstract class Tournament {
             matchResult = MatchResult.Lose;
         }
 
-        System.out.printf("%s %s against %s : %d vs %d\n", player, matchResult, opponent, playerScoreGained, opponentScoreGained);
+        if (showMatches) {
+            System.out.printf("%s %s against %s : %d vs %d\n", player, matchResult, opponent, playerScoreGained, opponentScoreGained);
+        }
 
         return matchResult;
     }

@@ -24,7 +24,7 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
         int matches = 0;
         List<Player> currentPlayers = this.players;
 
-        System.out.printf("Starting %s with %d cycle(s)\n", this.getClass().getSimpleName(), cycles);
+        System.out.printf("Starting %s with %d cycle(s) and %d replacement(s)\n", this.getClass().getSimpleName(), cycles, replacementCount);
 
         for (int cycle = 0; cycle < cycles; cycle++) {
             System.out.printf("\nEliminationAndEvolutionTournament cycle #%d\n\n", cycle + 1);
@@ -40,7 +40,7 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
             }
         }
 
-        System.out.printf("%d-cycle(s) %s ended with %d matches\n\n", cycles, this.getClass().getSimpleName(), matches);
+        System.out.printf("%d-cycle(s)-with-%d-replacement(s) %s ended with %d matches\n\n", cycles, replacementCount, this.getClass().getSimpleName(), matches);
 
         showPopulationComparison(this.players, currentPlayers);
         showMostPopularStrategies(this.players, "before");

@@ -5,6 +5,7 @@ import org.gametheory.strategy.Strategy;
 import org.gametheory.tournament.TournamentConfig;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoundRobinTournament extends Tournament {
     public RoundRobinTournament(TournamentConfig tournamentConfig) {
@@ -25,7 +26,7 @@ public class RoundRobinTournament extends Tournament {
                 players.stream().filter(player -> !player.getStrategy().isNice()).count());
         System.out.printf("%d unique strategies: %s\n\n",
                 strategies.size(),
-                strategies.stream().map(Strategy::getName));
+                strategies.stream().map(Strategy::getName).collect(Collectors.toList()));
 
         int matches = 0;
 

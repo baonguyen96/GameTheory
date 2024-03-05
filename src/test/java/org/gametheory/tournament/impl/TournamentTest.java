@@ -45,15 +45,15 @@ public class TournamentTest {
     public void getWinner() {
         tournament.start();
         Player winner = tournament.getWinner();
-        assertTrue(winner.getStrategy().is(new AlwaysDefect()));
+        assertTrue(winner.getStrategy().ofType(AlwaysDefect.class));
     }
 
     @Test
     public void getUniqueStrategies() {
         List<Strategy> uniqueStrategies = Tournament.getDistinctStrategies(players);
         assertEquals(2, uniqueStrategies.size());
-        assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.is(new AlwaysCooperate())));
-        assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.is(new AlwaysDefect())));
+        assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.ofType(AlwaysCooperate.class)));
+        assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.ofType(AlwaysDefect.class)));
     }
 
     @Test

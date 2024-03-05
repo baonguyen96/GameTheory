@@ -62,7 +62,7 @@ public class EliminationAndEvolutionTournamentTest {
         List<Player> evolvedPlayers = tournament.evolve(players);
 
         assertEquals(players.size(), evolvedPlayers.size());
-        assertEquals(1L, evolvedPlayers.stream().filter(player -> player.getStrategy().is(new AlwaysCooperate())).count());
-        assertEquals(3L, evolvedPlayers.stream().filter(player -> player.getStrategy().is(new AlwaysDefect())).count());
+        assertEquals(1L, evolvedPlayers.stream().filter(player -> player.getStrategy().ofType(AlwaysCooperate.class)).count());
+        assertEquals(3L, evolvedPlayers.stream().filter(player -> player.getStrategy().ofType(AlwaysDefect.class)).count());
     }
 }
