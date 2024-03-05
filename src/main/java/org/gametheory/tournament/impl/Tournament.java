@@ -66,7 +66,7 @@ public abstract class Tournament {
         return matchResult;
     }
 
-    static List<Strategy> getUniqueStrategies(List<Player> players) {
+    static List<Strategy> getDistinctStrategies(List<Player> players) {
         return players
                 .stream()
                 .map(Player::getStrategy)

@@ -50,7 +50,7 @@ public class TournamentTest {
 
     @Test
     public void getUniqueStrategies() {
-        List<Strategy> uniqueStrategies = Tournament.getUniqueStrategies(players);
+        List<Strategy> uniqueStrategies = Tournament.getDistinctStrategies(players);
         assertEquals(2, uniqueStrategies.size());
         assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.is(new AlwaysCooperate())));
         assertTrue(uniqueStrategies.stream().anyMatch(strategy -> strategy.is(new AlwaysDefect())));

@@ -25,7 +25,7 @@ public class OneVsOneTournament extends Tournament {
 
     @Override
     public int start() {
-        List<Strategy> uniqueStrategies = getUniqueStrategies(allPlayers);
+        List<Strategy> strategies = getDistinctStrategies(allPlayers);
 
         System.out.printf("Starting %s with %d round(s) for %s vs %d player(s)\n",
                 this.getClass().getSimpleName(), totalRounds, playerAgainstOthers, players.size());
@@ -33,8 +33,8 @@ public class OneVsOneTournament extends Tournament {
                 allPlayers.stream().filter(player -> player.getStrategy().isNice()).count(),
                 allPlayers.stream().filter(player -> !player.getStrategy().isNice()).count());
         System.out.printf("%d unique strategies: %s\n\n",
-                uniqueStrategies.size(),
-                uniqueStrategies.stream().map(Strategy::getName).collect(Collectors.toList()));
+                strategies.size(),
+                strategies.stream().map(Strategy::getName).collect(Collectors.toList()));
 
         for (Player player : players) {
             MatchResult matchResult = match(playerAgainstOthers, player);
@@ -54,6 +54,7 @@ public class OneVsOneTournament extends Tournament {
                 .entrySet()
                 .stream()
                 .noneMatch(resultAgainstPlayer -> resultAgainstPlayer.getValue() == MatchResult.Lose);
+
         Player winner = null;
 
         if (neverLost) {
