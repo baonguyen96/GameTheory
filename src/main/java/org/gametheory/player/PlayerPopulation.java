@@ -16,18 +16,17 @@ public class PlayerPopulation {
         );
     }
 
-    public static List<Player> getSameTypeOfPlayers() {
-        return Arrays.asList(
-                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliated()),
-                new Player(new DefectRandomlyAndKeepDefectIfNotRetaliated())
-        );
+    public static List<Player> getDualPlayersWithStrategy(Class<? extends Strategy> strategy) throws Exception {
+        return getMixedButUniquePlayersTwice()
+                .stream()
+                .filter(player -> player.getStrategy().ofType(strategy))
+                .collect(Collectors.toList());
     }
 
     public static List<Player> getCustomPopulation() {
         return Arrays.asList(
-                new Player(new AlternateMoveCooperateFirst()),
-                new Player(new AlternateMoveDefectFirst()),
-                new Player(new AlwaysCooperate()),
+                new Player(new KeepDefectOnceBeingAttacked()),
+                new Player(new CooperateFirstButWillDefectTwiceForEachAttack()),
                 new Player(new AlwaysDefect())
         );
     }

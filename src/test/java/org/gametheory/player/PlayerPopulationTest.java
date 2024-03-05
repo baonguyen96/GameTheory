@@ -46,10 +46,10 @@ public class PlayerPopulationTest {
     }
 
     @Test
-    public void getSameTypeOfPlayers() {
-        List<Player> players = PlayerPopulation.getSameTypeOfPlayers();
-        assertTrue(players.size() > 1);
-        assertEquals(1L, players.stream().map(player -> player.getStrategy().getClass().getSimpleName()).distinct().count());
+    public void getSameTypeOfPlayers() throws Exception {
+        List<Player> players = PlayerPopulation.getDualPlayersWithStrategy(AlwaysCooperate.class);
+        assertEquals(2, players.size());
+        assertTrue(players.stream().allMatch(player -> player.getStrategy().ofType(AlwaysCooperate.class)));
     }
 
     @Test

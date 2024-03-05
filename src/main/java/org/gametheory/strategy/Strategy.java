@@ -17,12 +17,12 @@ public interface Strategy {
         return makeFirstMove() == Move.COOPERATE;
     }
 
-    default boolean is(Strategy strategy) {
+    default boolean ofType(Class<? extends Strategy> strategy) {
         if (strategy == null) {
             return false;
         }
 
-        return this.getClass().getName().equals(strategy.getClass().getName());
+        return this.getClass().getName().equals(strategy.getName());
     }
 
     default String getName() {
