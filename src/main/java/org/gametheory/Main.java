@@ -12,17 +12,19 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        int proportionOfGoodness = Utility.getRandomNumber(1, 9);
-        List<Player> players = PlayerPopulation.getMixedButUniquePlayers();
-        Player playerAgainstTheRest = Utility.firstOrDefault(players, player -> player.getStrategy().is(new AlwaysDefect()), null);
+        int headCount = Utility.getRandomNumber(100, 1000);
+        int goodPercentage = Utility.getRandomNumber(1, 9);
+//        List<Player> players = PlayerPopulation.getPopulationWithGoodAndBadPlayers(headCount / 10 * goodPercentage, headCount / 10 * (10 - goodPercentage));
+        List<Player> players = PlayerPopulation.getCustomPopulation();
+        Player playerAgainstTheRest = Utility.firstOrDefault(players, player -> player.getPlayerId() < 0, null);
 
         TournamentConfig tournamentConfig = TournamentConfig
                 .builder()
                 .withPlayers(players)
                 .withCycle(Utility.getRandomNumber(1, 1))
-                .withRound(Utility.getRandomNumber(1, 5))
-                .withShowMatches(true)
-                .withReplacementPercentage(10)
+                .withRound(Utility.getRandomNumber(1, 10))
+                .withShowMatches(false)
+                .withReplacementPercentage(Utility.getRandomNumber(5, 20))
                 .withPlayerIdToAgainstTheRest(playerAgainstTheRest == null ? -1 : playerAgainstTheRest.getPlayerId())
                 .build();
 
