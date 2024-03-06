@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Collections;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RandomMoveTest {
@@ -26,5 +27,10 @@ public class RandomMoveTest {
     public void makeMove() {
         Strategy.Move move = strategy.makeMove(Collections.emptyList());
         assertTrue(move == Strategy.Move.DEFECT || move == Strategy.Move.COOPERATE);
+    }
+
+    @Test
+    public void isNice() {
+        assertFalse(strategy.isNice());
     }
 }
