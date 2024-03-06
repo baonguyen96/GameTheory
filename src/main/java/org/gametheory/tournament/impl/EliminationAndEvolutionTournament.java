@@ -24,7 +24,8 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
         int matches = 0;
         List<Player> currentPlayers = this.players;
 
-        System.out.printf("Starting %s with %d cycle(s) and %d replacement(s)\n", this.getClass().getSimpleName(), cycles, replacementCount);
+        System.out.printf("Starting %s with %d cycle(s) and %d replacement(s) for %d player(s)\n",
+                this.getClass().getSimpleName(), cycles, replacementCount, players.size());
 
         for (int cycle = 0; cycle < cycles; cycle++) {
             System.out.printf("\nEliminationAndEvolutionTournament cycle #%d\n\n", cycle + 1);
@@ -40,7 +41,8 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
             }
         }
 
-        System.out.printf("%d-cycle(s)-with-%d-replacement(s) %s ended with %d matches\n\n", cycles, replacementCount, this.getClass().getSimpleName(), matches);
+        System.out.printf("%d-cycle(s)-with-%d-replacement(s) %s ended with %d matches\n\n",
+                cycles, replacementCount, this.getClass().getSimpleName(), matches);
 
         showPopulationComparison(this.players, currentPlayers);
         showMostPopularStrategies(this.players, "before");
@@ -90,15 +92,15 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
                 .forEach(es -> System.out.printf("%s (isNice: %s): %d\n", es.getKey(), strategies.get(es.getKey()), es.getValue()));
     }
 
-    private void showEliminatedStrategies(List<Player> playersBefore, List<Player> playersAfter) {
+    private void showEliminatedStrategies(List<Player> beforePlayers, List<Player> afterPlayers) {
         System.out.println("\nEliminated strategies:");
 
-        List<String> strategiesAfter = playersAfter
+        List<String> strategiesAfter = afterPlayers
                 .stream()
                 .map(player -> player.getStrategy().getName())
                 .collect(Collectors.toList());
 
-        playersBefore
+        beforePlayers
                 .stream()
                 .map(Player::getStrategy)
                 .filter(strategy -> !strategiesAfter.contains(strategy.getName()))

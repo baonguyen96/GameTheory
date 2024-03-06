@@ -18,6 +18,6 @@ public class AlternateMoveCooperateFirst implements Strategy {
     @Override
     public Move makeMove(List<Move> myLastMoves, List<Move> opponentLastMoves) {
         Move myLastMove = myLastMoves.isEmpty() ? null : myLastMoves.get(myLastMoves.size() - 1);
-        return myLastMove == Move.DEFECT ? Move.COOPERATE : Move.DEFECT;
+        return opposite(myLastMove);
     }
 }

@@ -23,7 +23,7 @@ public class Simpleton extends RandomMove {
             move = myLastMove;
         }
         else if (opponentLastMove == Move.DEFECT) {
-            move = myLastMove == Move.COOPERATE ? Move.DEFECT : Move.COOPERATE;
+            move = opposite(myLastMove);
         }
 
         return move;

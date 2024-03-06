@@ -4,6 +4,7 @@ import org.gametheory.player.Player;
 import org.gametheory.strategy.Strategy;
 import org.gametheory.strategy.impl.AlwaysCooperate;
 import org.gametheory.strategy.impl.AlwaysDefect;
+import org.gametheory.strategy.impl.Simpleton;
 import org.gametheory.tournament.TournamentConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,12 +69,15 @@ public class TournamentTest {
     public void getRankedPlayers() {
         Player player1 = new Player(new AlwaysCooperate());
         Player player2 = new Player(new AlwaysDefect());
+        Player player3 = new Player(new Simpleton());
         player1.increaseScore(1);
         player2.increaseScore(2);
+        player3.increaseScore(2);
 
-        List<Player> ranked = Tournament.getRankedPlayers(Arrays.asList(player1, player2));
+        List<Player> ranked = Tournament.getRankedPlayers(Arrays.asList(player1, player2, player3));
 
-        assertEquals(2, ranked.get(0).getScore());
-        assertEquals(1, ranked.get(1).getScore());
+        assertTrue(ranked.get(0).getStrategy().ofType(Simpleton.class));
+        assertTrue(ranked.get(1).getStrategy().ofType(AlwaysDefect.class));
+        assertTrue(ranked.get(2).getStrategy().ofType(AlwaysCooperate.class));
     }
 }

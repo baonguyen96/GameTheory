@@ -118,6 +118,7 @@ public abstract class Tournament {
                 .sorted(Comparator
                         .comparingInt(Player::getScore)
                         .reversed()
+                        .thenComparingInt(player -> player.getStrategy().isNice() ? 0 : 1)
                         .thenComparingInt(Player::getPlayerId))
                 .collect(Collectors.toList());
     }

@@ -28,4 +28,8 @@ public interface Strategy {
     default String getName() {
         return this.getClass().getSimpleName();
     }
+
+    default Move opposite(Move move) {
+        return move == Move.COOPERATE ? Move.DEFECT : Move.COOPERATE;
+    }
 }
