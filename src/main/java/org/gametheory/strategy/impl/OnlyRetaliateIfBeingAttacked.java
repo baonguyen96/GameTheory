@@ -12,7 +12,6 @@ public class OnlyRetaliateIfBeingAttacked implements Strategy {
 
     @Override
     public Move makeMove(List<Move> opponentLastMoves) {
-        Move opponentLastMove = opponentLastMoves.isEmpty() ? null : opponentLastMoves.get(opponentLastMoves.size() - 1);
-        return opponentLastMove == Move.DEFECT ? Move.DEFECT : Move.COOPERATE;
+        return opponentLastMoves.isEmpty() ? Move.COOPERATE : opponentLastMoves.get(opponentLastMoves.size() - 1);
     }
 }

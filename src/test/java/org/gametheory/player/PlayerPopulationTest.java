@@ -12,8 +12,8 @@ public class PlayerPopulationTest {
     @Test
     public void getAlwaysCooperateAndDeflectPlayers() {
         List<Player> players = PlayerPopulation.getAlwaysCooperateAndDeflectPlayers();
-        assertTrue(players.get(0).getStrategy() instanceof AlwaysCooperate);
-        assertTrue(players.get(1).getStrategy() instanceof AlwaysDefect);
+        assertTrue(players.get(0).getStrategy().ofType(AlwaysCooperate.class));
+        assertTrue(players.get(1).getStrategy().ofType(AlwaysDefect.class));
     }
 
     @Test

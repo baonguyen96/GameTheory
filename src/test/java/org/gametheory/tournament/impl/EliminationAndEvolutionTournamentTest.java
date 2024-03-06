@@ -38,6 +38,7 @@ public class EliminationAndEvolutionTournamentTest {
                 .withRound(1)
                 .withReplacementPercentage(25)
                 .build();
+
         tournament = new EliminationAndEvolutionTournament(tournamentConfig);
     }
 
@@ -54,7 +55,7 @@ public class EliminationAndEvolutionTournamentTest {
 
         assertEquals(1, clones.size());
         assertNotEquals(player.getPlayerId(), clones.get(0).getPlayerId());
-        assertTrue(player.getStrategy() instanceof AlwaysCooperate);
+        assertTrue(player.getStrategy().ofType(AlwaysCooperate.class));
     }
 
     @Test

@@ -10,11 +10,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public abstract class Tournament {
-    protected final int totalRounds;
-    protected List<Player> players;
-    protected final boolean showMatches;
-
     protected enum MatchResult { Win, Tie, Lose }
+    protected final int totalRounds;
+    protected final boolean showMatches;
+    protected List<Player> players;
 
     public Tournament(TournamentConfig tournamentConfig) {
         this.players = tournamentConfig.getPlayers();
