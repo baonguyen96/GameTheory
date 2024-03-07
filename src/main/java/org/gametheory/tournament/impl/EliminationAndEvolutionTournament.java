@@ -80,7 +80,6 @@ public class EliminationAndEvolutionTournament extends RoundRobinTournament {
         Map<String, Boolean> strategies = players
                 .stream()
                 .map(Player::getStrategy)
-                .distinct()
                 .collect(Collectors.toMap(Strategy::getName, Strategy::isNice, (existing, replacement) -> existing));
 
         players
