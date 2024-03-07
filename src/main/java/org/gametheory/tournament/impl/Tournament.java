@@ -53,7 +53,8 @@ public abstract class Tournament {
 
         if (playerScoreGained > opponentScoreGained) {
             matchResult = MatchResult.Win;
-        } else if (playerScoreGained == opponentScoreGained) {
+        } 
+        else if (playerScoreGained == opponentScoreGained) {
             matchResult = MatchResult.Tie;
         }
         else {
