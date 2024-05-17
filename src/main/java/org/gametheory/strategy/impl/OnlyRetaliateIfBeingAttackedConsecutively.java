@@ -9,11 +9,11 @@ public class OnlyRetaliateIfBeingAttackedConsecutively extends OnlyRetaliateIfBe
             return Move.COOPERATE;
         }
 
-        boolean areLast2MovesDeflect = opponentLastMoves
+        boolean areLast2MovesDefected = opponentLastMoves
                 .subList(opponentLastMoves.size() - 2, opponentLastMoves.size())
                 .stream()
                 .allMatch(move -> move == Move.DEFECT);
 
-        return areLast2MovesDeflect ? Move.DEFECT : Move.COOPERATE;
+        return areLast2MovesDefected ? Move.DEFECT : Move.COOPERATE;
     }
 }

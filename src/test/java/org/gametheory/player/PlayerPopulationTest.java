@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 
 public class PlayerPopulationTest {
     @Test
-    public void getAlwaysCooperateAndDeflectPlayers() {
-        List<Player> players = PlayerPopulation.getAlwaysCooperateAndDeflectPlayers();
+    public void getAlwaysCooperateAndDefectPlayers() {
+        List<Player> players = PlayerPopulation.getAlwaysCooperateAndDefectPlayers();
         assertTrue(players.get(0).getStrategy().ofType(AlwaysCooperate.class));
         assertTrue(players.get(1).getStrategy().ofType(AlwaysDefect.class));
     }

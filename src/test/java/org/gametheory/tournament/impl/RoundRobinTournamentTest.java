@@ -17,10 +17,10 @@ public class RoundRobinTournamentTest {
     @Before
     public void setUp() {
         Player cooperatePlayer = new Player(new AlwaysCooperate());
-        Player deflectPlayer = new Player(new AlwaysDefect());
+        Player defectPlayer = new Player(new AlwaysDefect());
         TournamentConfig tournamentConfig = TournamentConfig
                 .builder()
-                .withPlayers(Arrays.asList(cooperatePlayer, deflectPlayer))
+                .withPlayers(Arrays.asList(cooperatePlayer, defectPlayer))
                 .withShowMatches(true)
                 .build();
         tournament = new RoundRobinTournament(tournamentConfig);

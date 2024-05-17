@@ -12,13 +12,14 @@ public class TournamentConfig {
         private int round;
         private boolean showMatches;
         private int replacementPercentage;
-        private int playerIdToAgainstTheRest = -1;
+        private int playerIdToAgainstTheRest;
+        public static final int NOBODY = -1;
 
         public TournamentConfig build() {
             Player player = null;
             List<Player> finalPlayers = players;
 
-            if (playerIdToAgainstTheRest >= 0) {
+            if (playerIdToAgainstTheRest >= NOBODY) {
                 player = players.stream().filter(p -> p.getPlayerId() == playerIdToAgainstTheRest).collect(Collectors.toList()).get(0);
                 finalPlayers = players.stream().filter(p -> p.getPlayerId() != playerIdToAgainstTheRest).collect(Collectors.toList());
             }

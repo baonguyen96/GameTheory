@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class PlayerPopulation {
-    public static List<Player> getAlwaysCooperateAndDeflectPlayers() {
+    public static List<Player> getAlwaysCooperateAndDefectPlayers() {
         return Arrays.asList(
                 new Player(new AlwaysCooperate()),
                 new Player(new AlwaysDefect())
