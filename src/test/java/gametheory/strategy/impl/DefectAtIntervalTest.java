@@ -1,0 +1,35 @@
+package gametheory.strategy.impl;
+
+import gametheory.strategy.Strategy;
+import gametheory.strategy.impl.DefectAtInterval;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.junit.Assert.assertEquals;
+
+public class DefectAtIntervalTest {
+    private Strategy strategy;
+
+    @Before
+    public void setUp() throws Exception {
+        strategy = new DefectAtInterval(50);
+    }
+
+    @Test
+    public void makeFirstMove() {
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeFirstMove());
+    }
+
+    @Test
+    public void makeMove() {
+        assertEquals(Strategy.Move.COOPERATE, strategy.makeMove(Arrays.asList(Strategy.Move.DEFECT, Strategy.Move.DEFECT)));
+
+        List<Strategy.Move> moves = IntStream.range(0, 50).mapToObj(i -> Strategy.Move.COOPERATE).collect(Collectors.toList());
+        assertEquals(Strategy.Move.DEFECT, strategy.makeMove(moves));
+    }
+}
